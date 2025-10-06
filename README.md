@@ -1,4 +1,4 @@
-# CARACTERÍSTICAS A AGREGA:
+# CARACTERÍSTICAS A AGREGAR:
 ## GUI
 - Hecha en python con tkinter
 - Ventana de bienvenida
