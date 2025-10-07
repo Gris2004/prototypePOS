@@ -1,5 +1,2 @@
-..gitignore.un~
-.gitignore.~
-.*.py.un~
-*.py~
-
+*.swp
+*.swo
