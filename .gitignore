@@ -1,2 +1,10 @@
-*.swp
-*.swo
+#Archivos temporales de vim
+*~
+.*.un~
+*.un~
+.swp
+.swo
+.swm
+.swn
+.session
+.netrwhist
