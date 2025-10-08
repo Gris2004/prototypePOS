@@ -1,5 +1,6 @@
 # INSTALACIÓN
-Existen 2 archivos llamados installLibraries, uno es .bat y el otro es .ps1 para el que prefiera uno u otro son casi iguales y por si acaso hago los dos
+existe un archivo llamado "installLibraries.bat" y pronto haré ajustes para que también pueda funcionar en linux con otro archivo si es necesario
+por ahora, este sirve para hacer instalaciones necesrias para que funcione el programa
 
 # CARACTERÍSTICAS A AGREGAR:
 ## GUI
