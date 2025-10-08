@@ -1,0 +1,27 @@
+{
+  "name": "prototypepos",
+  "version": "1.0.0",
+  "description": "- Hecha en python con tkinter\r - Ventana de bienvenida\r     - Botón de tickets\r     - Botón de inventario\r     - Botón de punto de venta\r - Ventana de tickets\r     - Tabla con el historial de tickets\r     - Opción de eliminar un elemento del historial\r     - Opción de modificar un elemento del historial\r - Ventana de inventario\r     - Al entrar pide solicitud a la API para la tabla de la base de datos desde el cliente (GUI)\r     - Botones para ELIMINAR, AGREGAR y ACTUALIZAR (tanto cantidad de productos como otros datos) un registro\r     - Botón para ver una ventana de estadísticas según el producto seleccionado\r     - Tabla de la base de datos de inventario donde se pueda seleccionar el registro\r     - Buscador de productos\r     - celdas en color distintivo para cuando se rebase o iguala el límite de productos existentes\r - Ventana de estadísticas\r     - muestra cuantos productos se han vendido en el mes actual y los de los meses anteriores representados en una gráfica\r     - el limite de meses es ajustable\r     - Las estadísticas del producto se basan en el historial de tickets\r - Ventana de base de datos\r     - al elegir alguna opcion de la ventana de inventario que no sean las estadísticas, se abrirá una ventana pequeña de acorde\r       a la opción seleccionada\r - Ventana de punto de venta\r     - panel de ticket que muestra los productos que el usuario va agregando\r     - panel que muestra los productos en existencia\r     - buscador de productos para ser agregados\r     - Botón para generar ticket (lo manda al historial y lo vuelve pdf para luego preguntar si se quiere imprimir) y luego vacía\r       la caja de productos donde se realiza la venta de los productos y se resta en existencias al igual que suma a los ingresos\r     - vaciar el panel de tickets\r ## TICKET\r - guardado en base de datos tabla historial\r - se guardan tickets en una carpeta que se vacía cada ciertos pedidos\r - productos comprados\r - costo total\r - fecha de ticket\r - IVA\r ## API\r - Hecha en node.js\r - Endpoins para funciones de base de datos\r - Endpoint para estadísticas sobre producto\r - logs que se guardan cada 10 pedidos o transacciones",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gris2004/prototypePOS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gris2004/prototypePOS/issues"
+  },
+  "homepage": "https://github.com/Gris2004/prototypePOS#readme",
+  "devDependencies": {
+    "eslint": "^9.37.0",
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
