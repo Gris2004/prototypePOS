@@ -1,3 +1,6 @@
+# INSTALACIÓN
+Existen 2 archivos llamados installLibraries, uno es .bat y el otro es .ps1 para el que prefiera uno u otro son casi iguales y por si acaso hago los dos
+
 # CARACTERÍSTICAS A AGREGAR:
 ## GUI
 - Hecha en python con tkinter
