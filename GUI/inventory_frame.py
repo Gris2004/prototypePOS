@@ -1,19 +1,14 @@
 import tkinter as tk
 
-#clase de TiketFrame
-class TiketsFrame:
-    """clase que representa la ventana de historial de tickets
-    atributos:
-        frame ? variable que almacena función tk.Tk()"""
-    #función de constructor
+class InventoryFrame:
     def __init__(self, frame, geometry, title):
         self.frame = frame
         self.geometry = geometry
         self.title = title
-    
-    #función para crear motrar la ventana
-    def showTiketsFrame(self):
+
+    def showInventoryFrame(self):
         self.frame = tk.Tk()
         self.frame.geometry(self.geometry)
         self.frame.title(self.title)
+
         self.frame.mainloop()
