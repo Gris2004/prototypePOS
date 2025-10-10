@@ -9,4 +9,7 @@
 .session
 .netrwhist
 node_modules
+
+#python
+__pycache__
 env
