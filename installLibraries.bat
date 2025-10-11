@@ -21,7 +21,6 @@ if exist package.json (
 	npm install -D eslint
 	npm install -S nodemon
 	npm install -S express
-	npm install -S mysql2
 	npm install -S sqlite3
 )
 
