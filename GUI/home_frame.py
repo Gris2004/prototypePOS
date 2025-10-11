@@ -1,38 +1,53 @@
-﻿#importación de librerías
-import tkinter as tk
+﻿import tkinter as tk
 from tikets_frame import TiketsFrame
 from inventory_frame import InventoryFrame
 
 class HomeFrame:
-    def __init__(self, frame, geometry, title):
-        self.frame = frame
+    def __init__(self, geometry="500x500", title="Ventana Inicial"):
         self.geometry = geometry
         self.title = title
-    
-    def callNewFrame(self, name):
-        """Llama a un frame existente por su nombre"""
-        #DEUDA TÉCNICA: Encontrar una forma de automatizar esta función sin necesidad de usar if's
-        if (name == "tikets"):
-            tikets = TiketsFrame(self.frame, "500x500", "Historial de Tikets")
-            tikets.showTiketsFrame()
-        if (name == "inventory"):
-            inventory = InventoryFrame(self.frame, "500x500", "Inventario")
-            inventory.showInventoryFrame()
+        self.frame = None
 
-    def showHomeFrame(self):
-        #inicialización del frame principal con sus elementos necesarios
+        # Mapeo de nombres a clases de frames
+        self.frames_map = {
+            "tikets": (TiketsFrame, "500x500", "Historial de Tikets"),
+            "inventory": (InventoryFrame, "500x500", "Inventario")
+        }
+
+    def call_new_frame(self, name):
+        """Llama a un frame existente por su nombre"""
+        frame_data = self.frames_map.get(name)
+        if frame_data:
+            frame_class, geometry, title = frame_data
+            new_frame = frame_class(self.frame, geometry, title)
+            # Llamar al método correspondiente según el tipo de frame
+            if hasattr(new_frame, "showTiketsFrame"):
+                new_frame.showTiketsFrame()
+            elif hasattr(new_frame, "showInventoryFrame"):
+                new_frame.showInventoryFrame()
+        else:
+            print(f"No existe un frame con el nombre '{name}'")
+
+    def show_home_frame(self):
+        """Inicializa la ventana principal y sus botones"""
         self.frame = tk.Tk()
         self.frame.geometry(self.geometry)
         self.frame.title(self.title)
 
-        inventoryButton = tk.Button(self.frame, text = "Inventario", command = lambda: self.callNewFrame("inventory")).grid(row = 1, column = 1)
-        tiketHistoriesButton = tk.Button(self.frame, text = "Historial de tikets", command = lambda: self.callNewFrame("tikets")).grid(row = 2, column = 1)
-        salesButton = tk.Button(self.frame, text = "Punto de Venta").grid(row = 3, column = 1)
+        # Botones
+        inventory_button = tk.Button(self.frame, text="Inventario", command=lambda: self.call_new_frame("inventory"))
+        inventory_button.grid(row=1, column=1)
+
+        tiket_histories_button = tk.Button(self.frame, text="Historial de tikets", command=lambda: self.call_new_frame("tikets"))
+        tiket_histories_button.grid(row=2, column=1)
+
+        sales_button = tk.Button(self.frame, text="Punto de Venta")
+        sales_button.grid(row=3, column=1)
+
         self.frame.mainloop()
 
-#inicialización y configuración de frameHome
-home_frame = 0
 
 if __name__ == "__main__":
-	home = HomeFrame(None, "500x500", "Ventana Inicial")
-	home.showHomeFrame()
+    home = HomeFrame()
+    home.show_home_frame()
+
