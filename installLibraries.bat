@@ -22,6 +22,7 @@ if exist package.json (
 	npm install -S nodemon
 	npm install -S express
 	npm install -S sqlite3
+	npm install -S sqlite
 )
 
 echo.
