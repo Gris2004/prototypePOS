@@ -8,6 +8,9 @@
 .swn
 .session
 .netrwhist
+.*.*.swp
+
+#node js
 node_modules
 
 #python
