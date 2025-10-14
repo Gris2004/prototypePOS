@@ -2,6 +2,9 @@
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 
+//variables
+let columsNameArray = []
+
 //habilitar el modo de depuración
 sqlite3.verbose();
 
@@ -15,6 +18,9 @@ async function connectToDatabase() {
 	console.log("succesfull connection");
 	return db;
 }
+
+//función para crear tablas
+
 
 //se llama a la función con un catch para caso de errores
 await connectToDatabase().catch((err) => console.log(`error al conectar con la base de datos: ${err}`));
