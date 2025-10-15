@@ -36,10 +36,10 @@ async function createTable(tableName, columnsArray){
 	if (!/^[a-zA-Z0-9_]+$/.test(tableName)){
 		throw Error(console.log("Nombre de tabla no valido"));
 	}
-	const columns = join(", ") //converte "id", "integer" en "name TEXT" en "id INTEGER, name TEXT"
+	const columns = columnsArray.join(", ") //converte "id", "integer" en "name TEXT" en "id INTEGER, name TEXT"
 	try{
 		const db = await connectToDatabase();	
-		await db.run(`CREATE TABLE ${tableName} (${columns})`);
+		await db.run(`CREATE TABLE ${tableName} (${columns});`);
 	} catch (error) {
 		console.log("error al crear la tabla", error);
 	}
@@ -47,3 +47,7 @@ async function createTable(tableName, columnsArray){
 
 //se llama a la función con un catch para caso de errores
 await connectToDatabase().catch((err) => console.log(`error al conectar con la base de datos: ${err}`));
+
+//creación de una tabla de prueba
+columsNameArray = ["test1 VARCHAR(256)", "test2 INT(11)"];
+await createTable("test", columsNameArray);
