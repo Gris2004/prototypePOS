@@ -12,6 +12,8 @@
 
 #node js
 node_modules
+package-lock.json
+pnpm-lock.yaml
 
 #python
 __pycache__
