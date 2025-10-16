@@ -1,6 +1,6 @@
 //importación de librerías
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
+import sqlite3 from 'better-sqlite3';
+import { open } from 'better-sqlite3';
 
 //variables
 let columsNameArray = []
