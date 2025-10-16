@@ -13,16 +13,15 @@ echo.
 REM configuración de librerías de node.js
 echo instalando dependencias de node.js
 if exist package.json (
-	npm install
+	pnpm install
 ) else (
 	echo no hay archivo de package.json
 	echo se realizará el siguiente comando: npm init -y
-	npm init -y
-	npm install -D eslint
-	npm install -S nodemon
-	npm install -S express
-	npm install -S sqlite3
-	npm install -S sqlite
+	pnpm init
+	pnpm install -D eslint
+	pnpm install -S nodemon
+	pnpm install -S express
+	pnpm install -S better-sqlite3
 )
 
 echo.
