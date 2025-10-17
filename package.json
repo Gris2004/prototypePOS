@@ -1,23 +1,31 @@
 {
-  "name": "prototypePOS",
+  "name": "prototypepos",
   "version": "1.0.0",
-  "description": "",
+  "description": "existe un archivo llamado \"installLibraries.bat\" y pronto haré ajustes para que también pueda funcionar en linux con otro archivo si es necesario\r por ahora, este sirve para hacer instalaciones necesrias para que funcione el programa",
+  "homepage": "https://github.com/Gris2004/prototypePOS#readme",
+  "bugs": {
+    "url": "https://github.com/Gris2004/prototypePOS/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gris2004/prototypePOS.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon api/app.mjs"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.18.3",
   "devDependencies": {
     "dotenv": "^17.2.3",
     "eslint": "^9.37.0"
   },
   "dependencies": {
-    "better-sqlite3": "^12.4.1",
     "express": "^5.1.0",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
   }
 }

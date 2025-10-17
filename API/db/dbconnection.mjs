@@ -1,4 +1,3 @@
-import sqlite3 from 'better-sqlite3'
-
-//activar modo de depuración
-
+//importando ibrerías
+import sqlite3 from 'sqlite3';
+import { open } from 'sqlite';
