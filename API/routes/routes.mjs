@@ -10,15 +10,15 @@ router.get('/tables/consult', async(req, res) => {
 
 //endpoint para crear un registro
 router.post('/tables/create', async(req, res) => {
-    res.json({"message": "this is the endpoint to create a field in any table "});
+    res.json({"message": "this is the endpoint to create a row in any table "});
 });
 
 router.delete('/tables/delete', async(req, res) => {
-    res.json({"message": "this is the endpoint to delete a field in any table width an id"});
+    res.json({"message": "this is the endpoint to delete a row in any table width an id"});
 });
 
 router.post('/tables/update', async(req, res) => {
-    res.json({"message": "this is the endpoint to update a field in any table with an id or an script"});
+    res.json({"message": "this is the endpoint to update a row in any table with an id or an script"});
 });
 
 export default router
