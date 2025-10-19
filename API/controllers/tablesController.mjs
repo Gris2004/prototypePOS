@@ -2,7 +2,7 @@ import sqlite3 from 'sqlite3';
 import { connect } from '../db/dbconnection.mjs';
 
 //variables
-let arrayColumns = ["hi", "bye"];
+let arrayColumns = ["name VARCHAR(256)", "bye VARCHAR(256)"];
 
 /**
 *createTable is a function that connects with de database and create a new table
@@ -23,7 +23,7 @@ export async function createTable(tableName, arrayColumns){
 	try {
 		//variables for the query execute
 		const columns = arrayColumns.join(", ");
-		const query = `CREATE TABLE ${tableName} (${columns});`;
+		const query = `CREATE TABLE IF NOT EXISTS ${tableName} (${columns});`;
 
 		//execution of query
 		const db = await connect("../db/SalesPoint.db");
