@@ -21,8 +21,13 @@ export async function createTable(tableName, arrayColumns){
 	
 	//try catch for create the table
 	try {
+		//variables for the query execute
 		const columns = arrayColumns.join(", ");
 		const query = `CREATE TABLE ${tableName} (${columns});`;
+
+		//execution of query
+		const db = await connect("../db/SalesPoint.db");
+		db.run(query);
 	} catch (error) { 
 		console.log("error al crear la tabla: ", error); 
 	}
