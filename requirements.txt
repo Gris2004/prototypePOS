@@ -1,2 +1,9 @@
-tcl
-pylints
+astroid==4.0.1
+colorama==0.4.6
+dill==0.4.0
+isort==7.0.0
+mccabe==0.7.0
+platformdirs==4.5.0
+pylint==4.0.2
+Tcl==0.2
+tomlkit==0.13.3
