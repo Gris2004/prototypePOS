@@ -6,10 +6,10 @@ sqlite3.verbose();
 
 /**
 *connect is a function that connects with SalesPointDb
-*@param [string] - FileDirectory - for open the database
+*@param [string] - dbDirectory - for open the database
 *@return sqlite3.Database object
 */
-export async function connect(fileDirectory){
-	const db = new sqlite3.Database(fileDirectory);
+export async function connect(dbDirectory){
+	const db = new sqlite3.Database(dbDirectory);
 	return db
 }

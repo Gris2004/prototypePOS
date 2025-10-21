@@ -8,9 +8,10 @@ let arrayColumns = ["name VARCHAR(256)", "bye VARCHAR(256)"];
 *createTable is a function that connects with de database and create a new table
 *@param [string] tableName - sqlite takes this param for create the table (name)
 *@param [string[]] arrayColumns - sqlite takes this param for create the table with the strings for its columns (fields)
+*@param [string] dbDirectory - takes the directory of the db file
 *@return [string] tableCreatedLog - afther that the function worked returns a string that returns an error or a string
 */
-export async function createTable(tableName, arrayColumns){
+export async function createTable(dbDirectory, tableName, arrayColumns){
 	//validación de arreglos y el nombre de la tabla
 	if (!Array.isArray(arrayColumns) || arrayColumns.length === 0) {
 		throw new Error("Arreglo no valido o vacio");
@@ -26,11 +27,9 @@ export async function createTable(tableName, arrayColumns){
 		const query = `CREATE TABLE IF NOT EXISTS ${tableName} (${columns});`;
 
 		//execution of query
-		const db = await connect("../db/SalesPoint.db");
+		const db = await connect(dbDirectory);
 		db.run(query);
 	} catch (error) { 
 		console.log("error al crear la tabla: ", error); 
 	}
 }
-
-await createTable("test", arrayColumns);

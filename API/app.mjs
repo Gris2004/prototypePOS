@@ -2,7 +2,6 @@
 import express from 'express';
 import router from './routes/routes.mjs';
 import dotenv from 'dotenv';
-import { connect } from './db/dbconnection.mjs'
 
 const app = express();
 dotenv.config();
@@ -13,8 +12,6 @@ const ip = process.env.HOME_LOCAL_IP || 'localhost';
 
 app.use('/api', router);
 app.set('json spaces', 2);
-
-await connect();
 
 //configuración e inicialización del servidor nodejs
 app.listen(port, ip, () => console.log(`listening port: ${port}, and ip: ${ip}`));
