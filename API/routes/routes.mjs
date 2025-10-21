@@ -4,8 +4,9 @@ import { connect } from '../db/dbconnection.mjs'
 var router = Router();
 
 //endpoint para consultar las tablas
-router.get('/tables/consult', async(req, res) => { 
-	res.json({"message": "hi"});
+router.get('/tables/consult/:name', async(req, res) => { 
+	const name = req.params.name;
+	res.json({"message": `${name}`});
 });
 
 //endpoint para crear un registro
