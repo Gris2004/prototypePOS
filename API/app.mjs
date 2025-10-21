@@ -9,10 +9,11 @@ dotenv.config();
 
 //variables del servidor
 const port = process.env.API_PORT || 8080;
-const ip = process.env.HOME_LOCAL_IP || 'localhost';
+const ip = process.env.STATIONERY_LOCAL_IP || 'localhost';
 
 app.use('/api', router);
 app.set('json spaces', 2);
 
 //configuración e inicialización del servidor nodejs
 app.listen(port, ip, () => console.log(`listening port: ${port}, and ip: ${ip}`));
+console.log(`url: ${ip}:${port}`);
