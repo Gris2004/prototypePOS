@@ -33,3 +33,18 @@ export async function createTable(dbDirectory, tableName, arrayColumns){
 		console.log("error al crear la tabla: ", error); 
 	}
 }
+
+/**
+*fetchData recovers a json that contains the data returned for the query 
+*@param [string] tableName - table name for get the data of the table
+*@returns [string] data - string that takes a json of the query
+*/
+
+export async function fetchData(tableName){
+	try{
+		const query = `SELECT * FROM ${tableName}`;
+		
+	} catch (error) {
+		console.log("message: ", error);
+	}
+}
