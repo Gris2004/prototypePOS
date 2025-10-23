@@ -9,7 +9,7 @@ sqlite3.verbose();
 *@param [string] - dbDirectory - for open the database
 *@return sqlite3.Database object
 */
-export async function connect(dbDirectory){
+export function connect(dbDirectory){
 	const db = new sqlite3.Database(dbDirectory);
 	return db
 }
