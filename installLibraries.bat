@@ -23,6 +23,7 @@ if exist package.json (
 	npm add -S nodemon
 	npm add -S express
 	npm add -S sqlite sqlite3
+    npm add -S path
 )
 
 echo.

@@ -2,14 +2,13 @@
 import express from 'express';
 import router from './routes/routes.mjs';
 import dotenv from 'dotenv';
-import { connect } from './db/dbconnection.mjs'
 
 const app = express();
 dotenv.config();
 
 //variables del servidor
 const port = process.env.API_PORT || 8080;
-const ip = process.env.STATIONERY_LOCAL_IP || 'localhost';
+const ip = process.env.LOCAL_IP|| 'localhost';
 
 app.use('/api', router);
 app.set('json spaces', 2);
