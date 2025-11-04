@@ -24,8 +24,8 @@ if exist package.json (
 	npm add -S express
 	npm add -S sqlite sqlite3
     npm add -S path
+    npm add -S colors
 )
-
 echo.
 echo Listo
 pause
