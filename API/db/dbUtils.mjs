@@ -1,6 +1,7 @@
 // Importing libraries
 import path from 'path';
 import dotenv from 'dotenv';
+import sqlite3 from 'sqlite3';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -13,3 +14,5 @@ dotenv.config({path: envPath});
  *@return [path.resolve] dbRoute - the variable for open the database from any directory
 */
 export const dbPath = path.resolve(__dirname, "./SalesPoint.db");
+export const db = new sqlite3.Database(dbPath);
+console.log(db);

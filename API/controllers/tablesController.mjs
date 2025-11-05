@@ -1,10 +1,8 @@
 //importing dependencies
-import { connect } from '../db/dbconnection.mjs';
-import { dbPath } from '../db/dbUtils.mjs';
+import { dbPath, db } from '../db/dbUtils.mjs';
 import dotenv from 'dotenv';
 
 //db const that will keep open in each transaction, when the client closes, the database will too
-const db = connect(dbPath);
 dotenv.config();
 
 /**
@@ -14,9 +12,14 @@ dotenv.config();
  * */
 
 export function fetchData (tableName) {
-    const query = `SELECT * FROM ${tableName}`;
-    const rows = db.prepare(query).all;
-    return rows;
+    try{
+        //reading all users
+        const query = `SELECT * FROM ${tableName}`;
+        const rows = db.run(query);
+        return rows;
+    } catch (error){
+        console.error("Error Message: ", error);
+    }
 }
 
 console.log(fetchData('testTable'));
