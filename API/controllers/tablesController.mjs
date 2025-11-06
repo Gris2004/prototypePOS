@@ -13,13 +13,21 @@ dotenv.config();
 
 export function fetchData (tableName) {
     try{
-        //reading all users
-        const query = `SELECT * FROM ${tableName}`;
-        const rows = db.run(query);
-        return rows;
+        //query for execute the consult
+        const query = `SELECT * FROM ${tableName}`; 
+        
+        //promise that returns rows from the 
+        return new Promise((resolve, reject) => {
+            db.all(query, (err, rows) => {
+                if (err) reject(err);
+                else resolve(rows);
+            });
+        });
     } catch (error){
         console.error("Error Message: ", error);
     }
 }
 
-console.log(fetchData('testTable'));
+fetchData('testTable').then(rows => {
+    console.log(rows);
+});
