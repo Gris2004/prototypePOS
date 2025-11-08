@@ -15,4 +15,3 @@ dotenv.config({path: envPath});
 */
 export const dbPath = path.resolve(__dirname, "./SalesPoint.db");
 export const db = new sqlite3.Database(dbPath);
-console.log(db);
