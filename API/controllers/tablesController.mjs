@@ -19,19 +19,34 @@ class TablesController {
      * @return {string} [rows, fields] - the rows and fieds from the table
      * */
     fetchData (tableName) {
-        try{
-            //query for execute the consult
-            const query = `SELECT * FROM ${tableName}`; 
-            //promise that returns rows from the 
-            return new Promise((resolve, reject) => {
-                db.all(query, (err, rows) => {
-                    if (err) reject(err);
-                    else resolve(rows);
-                });
+        //query for execute the consult
+        const query = `SELECT * FROM ${tableName}`; 
+        
+        //promise that returns rows from the 
+        return new Promise((resolve, reject) => {
+            db.all(query, (err, rows) => {
+                if (err) reject(err);
+                else resolve(rows);
             });
-        } catch (error){
-            console.error("Error Message: ", error);
-        }
+        });
+    }
+
+    /**
+     * takes a tableName and a columnsArray to create a new table in sqlite3 db
+     * @param {string} tableName - the table's name
+     * @param {string[]} array - the fields for the table
+     * */
+    createTable (tableName, array) {
+        //preparing the statement
+        const columns = array.join(", ");
+        const query = `CREATE TABLE ${tableName} (${columns})`;
+
+        return new Promise((resolve, reject) => {
+            db.run(query, (err) => {
+                if(err) reject(err);
+                else resolve(`table: ${tableName} was created succefuly with the fields: ${columns}`);
+            });
+        });
     }
 }
 
