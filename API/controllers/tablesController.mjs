@@ -96,7 +96,7 @@ class TablesController {
         }).catch(error => {
             console.error("error message: ", error);
         });
-        for(let i = 0; i <= fieldsDescribe.length(); i++){
+        for(let i = 0; i < fieldsDescribe.length(); i++){
             console.log(`${i}\n`);
         }
     }
@@ -110,3 +110,5 @@ const tableController = new TablesController(db);
 }).catch(error => {
     console.error("error message: ", error);
 });*/
+
+tableController.insertRecord('test', ['hi', 'bye']);
