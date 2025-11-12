@@ -1,6 +1,9 @@
 //importing dependencies
 import { dbPath, db } from '../db/dbUtils.mjs';
 import dotenv from 'dotenv';
+//TODO: fix the function: describeTable
+//TODO: make the function: createTable
+
 
 /**
  * this class contains the functions to manage the database easier than use the sqlite3 functions 
@@ -71,10 +74,14 @@ class TablesController {
      * */
     describeTable(tableName){
         const query = `PRAGMA table_info(${tableName})`;
-        return new Promise((resolve, reject) => {
-            db.all(query, (err, fields) => {
+       
+        return new Promise ((resolve, reject) => {
+            db.all(query, [], (err, fields) => {
                 if(err) reject(err);
-                else resolve(fields);
+                else {
+                    const fieldsName = fields.join(", ");
+                    resolve (fieldsName);
+                }
             });
         });
     }
@@ -86,20 +93,8 @@ class TablesController {
      * @return {Promise} (resolve, reject) - returns the tablename and the records or an error
      * */
     insertRecord(tableName, array){
-        //array param in a string
-        const values = array.join(", ");
-        
-        //table fields in a string in string[] format
-        const fieldsDescribe = [];
-        this.describeTable(tableName).then(result => {
-            fieldsDescribe = result;
-        }).catch(error => {
-            console.error("error message: ", error);
-        });
-        for(let i = 0; i < fieldsDescribe.length(); i++){
-            console.log(`${i}\n`);
-        }
-    }
+
+    } 
 }
 
 const tableController = new TablesController(db);
@@ -111,4 +106,8 @@ const tableController = new TablesController(db);
     console.error("error message: ", error);
 });*/
 
-tableController.insertRecord('test', ['hi', 'bye']);
+tableController.describeTable('test').then(result => {
+    console.log(result);
+}).catch(err => {
+    console.error("Error Message: ", err);
+});
