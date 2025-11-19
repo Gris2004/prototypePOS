@@ -27,7 +27,7 @@ class TablesController {
         
         //promise that returns rows from the 
         return new Promise((resolve, reject) => {
-            db.all(query, (err, rows) => {
+            this.db.all(query, (err, rows) => {
                 if (err) reject(err);
                 else resolve(rows);
             });
@@ -46,7 +46,7 @@ class TablesController {
         const query = `CREATE TABLE ${tableName} (${columns})`;
 
         return new Promise((resolve, reject) => {
-            db.run(query, (err) => {
+            this.db.run(query, (err) => {
                 if(err) reject(err);
                 else resolve(`table: ${tableName} was created succefuly with the fields: ${columns}`);
             });
@@ -60,7 +60,7 @@ class TablesController {
     dropTable(tableName) {
         const query = `DROP TABLE ${tableName}`;
         return new Promise((resolve, reject) => {
-            db.run(query, (err) => {
+            this.db.run(query, (err) => {
                 if(err) reject(err);
                 else resolve(`the table ${tableName} was deleted`);
             });
@@ -76,11 +76,11 @@ class TablesController {
         const query = `PRAGMA table_info(${tableName})`;
        
         return new Promise ((resolve, reject) => {
-            db.all(query, [], (err, fields) => {
+            this.db.all(query, [], (err, rows) => {
                 if(err) reject(err);
                 else {
-                    const fieldsName = fields.join(", ");
-                    resolve (fieldsName);
+                    const fields = rows.map(col => col.name);
+                    resolve (fields);
                 }
             });
         });
