@@ -1,9 +1,6 @@
 //importing dependencies
 import { dbPath, db } from '../db/dbUtils.mjs';
 import dotenv from 'dotenv';
-//TODO: fix the function: describeTable
-//TODO: make the function: createTable
-
 
 /**
  * this class contains the functions to manage the database easier than use the sqlite3 functions 
@@ -92,8 +89,25 @@ class TablesController {
      * @param {string[]} array - the values for the record
      * @return {Promise} (resolve, reject) - returns the tablename and the records or an error
      * */
-    insertRecord(tableName, array){
+    async insertRecord(tableName, array){
+        try {
+            //Getting the fields array from the promise of describeTable
+            const arrayColumns = await this.describeTable(tableName);
 
+            //Joining the arrays in a string
+            const columns = arrayColumns.join(", ");
+            
+            //joining the array in a string called arrayRecord
+            const record = array.join(", ");
+            
+            //making a statement
+            const query = `INSERT INTO ${tableName} (${columns}) VALUES (${record})`;
+            db.run(query);
+
+            return query;
+        } catch (err) {
+            console.error("Error message: ", err);
+        }
     } 
 }
 
@@ -104,10 +118,12 @@ const tableController = new TablesController(db);
     console.log(result);
 }).catch(error => {
     console.error("error message: ", error);
-});*/
+});
 
 tableController.describeTable('test').then(result => {
     console.log(result);
 }).catch(err => {
     console.error("Error Message: ", err);
-});
+}); */
+
+console.log(await tableController.insertRecord('test', ["'hi'", "'bye'"]));
