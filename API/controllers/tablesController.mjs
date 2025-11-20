@@ -104,7 +104,7 @@ class TablesController {
             const query = `INSERT INTO ${tableName} (${columns}) VALUES (${record})`;
             this.db.run(query);
 
-            return query;
+       return query;
         } catch (err) {
             return err;
         }
@@ -127,6 +127,18 @@ class TablesController {
             return err;
         }
     }
+
+    //TODO: create the function -UpdateRecord-
+    /**
+     * updates a record
+     * @param {string} tableName - The name of the table
+     * @param {string[]} fields - the fields array for set the record
+     * @param {string[]} fieldSetters - the new content for the field
+     * @return {string} [query, err] - returns a query or an error
+     * */
+    async updateRecord () {
+        
+    }
 }
 
 const tableController = new TablesController(db);
@@ -142,7 +154,6 @@ tableController.describeTable('test').then(result => {
     console.log(result);
 }).catch(err => {
     console.error("Error Message: ", err);
-}); */
-
+}); 
 console.log(await tableController.insertRecord('test', ["'hi'", "'bye'"]));
-console.log(await tableController.deleteRecord('test', 'name', 'hi'))
+console.log(await tableController.deleteRecord('test', 'name', 'hi')) */
