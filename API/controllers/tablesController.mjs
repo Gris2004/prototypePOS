@@ -100,15 +100,33 @@ class TablesController {
             //joining the array in a string called arrayRecord
             const record = array.join(", ");
             
-            //making a statement
+            //running the query
             const query = `INSERT INTO ${tableName} (${columns}) VALUES (${record})`;
-            db.run(query);
+            this.db.run(query);
 
             return query;
         } catch (err) {
-            console.error("Error message: ", err);
+            return err;
         }
-    } 
+    }
+
+    /**
+     * erases the table with a table's name and an id of the record
+     * @param {string} tableName - the name of the table
+     * @param {string} fieldName - the field's name for delete the record
+     * @param {string/int} judgement - the criterion for delete the record
+     * @return {string} [query, error] - the query used for drop the table or an error
+     * */
+    async deleteRecord(tableName, fieldName, judgement) {
+        try {
+            //running the query
+            const query = `DELETE FROM ${tableName} WHERE ${fieldName} = '${judgement}'`;
+            this.db.prepare(query);
+            return query;
+        } catch (err) {
+            return err;
+        }
+    }
 }
 
 const tableController = new TablesController(db);
@@ -127,3 +145,4 @@ tableController.describeTable('test').then(result => {
 }); */
 
 console.log(await tableController.insertRecord('test', ["'hi'", "'bye'"]));
+console.log(await tableController.deleteRecord('test', 'name', 'hi'))
