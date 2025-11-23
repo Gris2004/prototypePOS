@@ -128,7 +128,8 @@ class TablesController {
         }
     }
 
-    //TODO: create the function -UpdateRecord-
+    //TODO: create the function -updateRecord-
+    //TODO: use dictionaries in -updateRecord-
     /**
      * updates a record
      * @param {string} tableName - The name of the table
@@ -136,7 +137,7 @@ class TablesController {
      * @param {string[]} fieldSetters - the new content for the field
      * @return {string} [query, err] - returns a query or an error
      * */
-    async updateRecord () {
+    async updateRecord (tableName, fields, fieldSetters) {
         
     }
 }
