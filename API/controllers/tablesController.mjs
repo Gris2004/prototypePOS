@@ -121,24 +121,41 @@ class TablesController {
         try {
             //running the query
             const query = `DELETE FROM ${tableName} WHERE ${fieldName} = '${judgement}'`;
-            this.db.prepare(query);
+            this.db.run(query);
             return query;
         } catch (err) {
             return err;
         }
     }
-
-    //TODO: create the function -updateRecord-
-    //TODO: use dictionaries in -updateRecord-
+ 
     /**
      * updates a record
      * @param {string} tableName - The name of the table
-     * @param {string[]} fields - the fields array for set the record
-     * @param {string[]} fieldSetters - the new content for the field
+     * @param {string[]} keyFields - The names of the fields that you wanna change
+     * @param {*[]} fieldValues - The new values of the fields that you wanna change
+     * @param {string} idName - the name of the field which contains the idRecord
+     * @param {int} idRecord - the identifier of the record 
      * @return {string} [query, err] - returns a query or an error
      * */
-    async updateRecord (tableName, fields, fieldSetters) {
-        
+    async updateRecord (tableName, keyFields, fieldValues, idName, idRecord) { 
+        if(keyFields.length != fieldValues.length) 
+            throw new Error("Error message: the length of the arrays don't match");
+
+        //contains the strings for set the fiels of the record
+        //Example: SET name = gris where id = 1; name belongs to keyFields, gris belongs to fieldValues
+        let settersArray = [];
+
+        for (let i = 0; i < keyFields.length; i++) {
+            settersArray.push(`${keyFields[i]} = ${fieldValues[i]}`);
+        }
+        const settersQuery = settersArray.join(", ");
+        const completeQuery = `UPDATE ${tableName} SET ${settersQuery} WHERE ${idName} = ${idRecord}`;
+        return new Promise((resolve, reject) => {
+            this.db.run(completeQuery, (err) => {
+                if(err) reject(err);
+                else resolve(completeQuery);
+            });
+        });
     }
 }
 
@@ -158,3 +175,4 @@ tableController.describeTable('test').then(result => {
 }); 
 console.log(await tableController.insertRecord('test', ["'hi'", "'bye'"]));
 console.log(await tableController.deleteRecord('test', 'name', 'hi')) */
+console.log(await tableController.updateRecord('test', ['name_test'], ["'bye'"], 'id_test', 1));
