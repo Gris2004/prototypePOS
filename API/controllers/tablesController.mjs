@@ -68,7 +68,7 @@ class TablesController {
     /**
      * describes the table from the tableName param
      * @param {string} tableName - the tables's name
-     * @return {string[]} [err, fields] - return the fields or an error
+     * @return {Promise} [reject err, resolve fields] - return the fields or an error
      * */
     describeTable(tableName){
         const query = `PRAGMA table_info(${tableName})`;
@@ -116,7 +116,7 @@ class TablesController {
      * @param {string} tableName - the name of the table
      * @param {string} fieldName - the field's name for delete the record
      * @param {string/int} judgement - the criterion for delete the record
-     * @return {string} [query, error] - the query used for drop the table or an error
+     * @return {Promise} [resolve query,reject error] - the query used for drop the table or an error
      * */
     async deleteRecord(tableName, fieldName, judgement) {
         //running the query
@@ -137,7 +137,7 @@ class TablesController {
      * @param {*[]} fieldValues - The new values of the fields that you wanna change
      * @param {string} idName - the name of the field which contains the idRecord
      * @param {int} idRecord - the identifier of the record 
-     * @return {string} [query, err] - returns a query or an error
+     * @return {Promise} [resolve query, reject err] - returns a query or an error
      * */
     async updateRecord (tableName, keyFields, fieldValues, idName, idRecord) { 
         if(keyFields.length != fieldValues.length) 
