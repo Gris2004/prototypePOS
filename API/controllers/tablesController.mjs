@@ -56,6 +56,7 @@ class TablesController {
      * @return {Promise} [resolve(string) reject(error)] - returns a string whith the table name deleted or an error */
     dropTable(tableName) {
         const query = `DROP TABLE ${tableName}`;
+        
         return new Promise((resolve, reject) => {
             this.db.run(query, (err) => {
                 if(err) reject(err);
@@ -90,24 +91,24 @@ class TablesController {
      * @return {Promise} (resolve, reject) - returns the tablename and the records or an error
      * */
     async insertRecord(tableName, array){
-        try {
-            //Getting the fields array from the promise of describeTable
-            const arrayColumns = await this.describeTable(tableName);
+        //Getting the fields array from the promise of describeTable
+        const arrayColumns = await this.describeTable(tableName);
 
-            //Joining the arrays in a string
-            const columns = arrayColumns.join(", ");
+        //Joining the arrays in a string
+        const columns = arrayColumns.join(", ");
             
-            //joining the array in a string called arrayRecord
-            const record = array.join(", ");
+        //joining the array in a string called arrayRecord
+        const record = array.join(", ");
             
-            //running the query
-            const query = `INSERT INTO ${tableName} (${columns}) VALUES (${record})`;
-            this.db.run(query);
-
-       return query;
-        } catch (err) {
-            return err;
-        }
+        //running the query
+        const query = `INSERT INTO ${tableName} (${columns}) VALUES (${record})`;
+        
+        return new Promise((resolve, reject) => {
+            this.db.run(query, (err) => {
+                if(err) reject(err);
+                else resolve(query);
+            });
+        });
     }
 
     /**
@@ -118,14 +119,15 @@ class TablesController {
      * @return {string} [query, error] - the query used for drop the table or an error
      * */
     async deleteRecord(tableName, fieldName, judgement) {
-        try {
-            //running the query
-            const query = `DELETE FROM ${tableName} WHERE ${fieldName} = '${judgement}'`;
-            this.db.run(query);
-            return query;
-        } catch (err) {
-            return err;
-        }
+        //running the query
+        const query = `DELETE FROM ${tableName} WHERE ${fieldName} = '${judgement}'`;
+        
+        return new Promise((resolve, reject) => {
+            this.db.run(query, (err) => {
+                if(err) reject(err);
+                else resolve(query);
+            });
+        });
     }
  
     /**
@@ -150,6 +152,7 @@ class TablesController {
         }
         const settersQuery = settersArray.join(", ");
         const completeQuery = `UPDATE ${tableName} SET ${settersQuery} WHERE ${idName} = ${idRecord}`;
+        
         return new Promise((resolve, reject) => {
             this.db.run(completeQuery, (err) => {
                 if(err) reject(err);
@@ -159,20 +162,3 @@ class TablesController {
     }
 }
 
-const tableController = new TablesController(db);
-
-//example of the execution with functions that returns a Promise
-/*tableController.describeTable('test').then(result => {
-    console.log(result);
-}).catch(error => {
-    console.error("error message: ", error);
-});
-
-tableController.describeTable('test').then(result => {
-    console.log(result);
-}).catch(err => {
-    console.error("Error Message: ", err);
-}); 
-console.log(await tableController.insertRecord('test', ["'hi'", "'bye'"]));
-console.log(await tableController.deleteRecord('test', 'name', 'hi')) */
-console.log(await tableController.updateRecord('test', ['name_test'], ["'bye'"], 'id_test', 1));
