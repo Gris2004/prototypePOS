@@ -94,12 +94,14 @@ class TablesController {
     async insertRecord(tableName, array){
         //Getting the fields array from the promise of describeTable
         const arrayColumns = await this.describeTable(tableName);
+        arrayColumns.splice(0, 1);
 
         //Joining the arrays in a string
         const columns = arrayColumns.join(", ");
             
         //joining the array in a string called arrayRecord
-        const record = array.join(", ");
+        let arrayWithApostrophe = addApostrophes(array);
+        let record = arrayWithApostrophe.join(", ");
             
         //running the query
         const query = `INSERT INTO ${tableName} (${columns}) VALUES (${record})`;
@@ -163,3 +165,4 @@ class TablesController {
     }
 }
 
+const tc = new TablesController(db);
