@@ -149,9 +149,12 @@ class TablesController {
         //contains the strings for set the fiels of the record
         //Example: SET name = gris where id = 1; name belongs to keyFields, gris belongs to fieldValues
         let settersArray = [];
+        
+        //newFieldValues is the fieldValues with apostrophes
+        let newFieldValues = addApostrophes(fieldValues);
 
         for (let i = 0; i < keyFields.length; i++) {
-            settersArray.push(`${keyFields[i]} = ${fieldValues[i]}`);
+            settersArray.push(`${keyFields[i]} = ${newFieldValues[i]}`);
         }
         const settersQuery = settersArray.join(", ");
         const completeQuery = `UPDATE ${tableName} SET ${settersQuery} WHERE ${idName} = ${idRecord}`;
@@ -166,3 +169,4 @@ class TablesController {
 }
 
 const tc = new TablesController(db);
+await tc.updateRecord("test", ["name_test"], ["hola"], "id_test", 1);
