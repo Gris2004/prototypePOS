@@ -1,5 +1,6 @@
 //importing dependencies
 import { dbPath, db } from '../db/dbUtils.mjs';
+import addApostrophes from '../utils/addApostrophes.mjs';
 import dotenv from 'dotenv';
 
 /**
