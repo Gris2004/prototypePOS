@@ -41,7 +41,7 @@ class TablesController {
     createTable (tableName, array) {
         //preparing the statement
         const columns = array.join(", ");
-        const query = `CREATE TABLE ${tableName} (${columns})`;
+        const query = `CREATE TABLE IF NOT EXISTS ${tableName} (${columns})`;
 
         return new Promise((resolve, reject) => {
             this.db.run(query, (err) => {
@@ -56,7 +56,7 @@ class TablesController {
      * @param {string} tableName - this param stores the name of the table for delete the table 
      * @return {Promise} [resolve(string) reject(error)] - returns a string whith the table name deleted or an error */
     dropTable(tableName) {
-        const query = `DROP TABLE ${tableName}`;
+        const query = `DROP TABLE if EXISTS ${tableName}`;
         
         return new Promise((resolve, reject) => {
             this.db.run(query, (err) => {
@@ -167,6 +167,3 @@ class TablesController {
         });
     }
 }
-
-const tc = new TablesController(db);
-await tc.updateRecord("test", ["name_test"], ["hola"], "id_test", 1);
