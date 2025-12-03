@@ -99,15 +99,15 @@ class TablesController {
         //Joining the arrays in a string
         const columns = arrayColumns.join(", ");
             
-        //joining the array in a string called arrayRecord
-        let arrayWithApostrophe = addApostrophes(array);
-        let record = arrayWithApostrophe.join(", ");
+        //joining the array in a string called arrayRecord 
+        let record = array.map(() => '?').join(', ');
             
         //running the query
         const query = `INSERT INTO ${tableName} (${columns}) VALUES (${record})`;
-        
+        console.log(record);
+
         return new Promise((resolve, reject) => {
-            this.db.run(query, (err) => {
+            this.db.run(query, array, (err) => {
                 if(err) reject(err);
                 else resolve(query);
             });
@@ -167,3 +167,7 @@ class TablesController {
         });
     }
 }
+
+const tc = new TablesController(db);
+console.log(await tc.fetchData('test'));
+console.log(await tc.insertRecord('test', ['test 1 from nodejs']));
