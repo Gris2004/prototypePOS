@@ -56,7 +56,7 @@ class TablesController {
      * @param {string} tableName - this param stores the name of the table for delete the table 
      * @return {Promise} [resolve(string) reject(error)] - returns a string whith the table name deleted or an error */
     dropTable(tableName) {
-        const query = `DROP TABLE if EXISTS ${tableName}`;
+        const query = `DROP TABLE IF EXISTS ${tableName}`;
         
         return new Promise((resolve, reject) => {
             this.db.run(query, (err) => {
@@ -123,10 +123,10 @@ class TablesController {
      * */
     async deleteRecord(tableName, fieldName, judgement) {
         //running the query
-        const query = `DELETE FROM ${tableName} WHERE ${fieldName} = '${judgement}'`;
+        const query = `DELETE FROM ${tableName} WHERE ${fieldName} = ?`;
         
         return new Promise((resolve, reject) => {
-            this.db.run(query, (err) => {
+            this.db.run(query, judgement, (err) => {
                 if(err) reject(err);
                 else resolve(query);
             });
@@ -167,7 +167,3 @@ class TablesController {
         });
     }
 }
-
-const tc = new TablesController(db);
-console.log(await tc.fetchData('test'));
-console.log(await tc.insertRecord('test', ['test 1 from nodejs']));
