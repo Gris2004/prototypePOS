@@ -1,6 +1,5 @@
 //importing dependencies
 import { dbPath, db } from '../db/dbUtils.mjs';
-import addApostrophes from '../utils/addApostrophes.mjs';
 import dotenv from 'dotenv';
 
 /**
@@ -143,27 +142,29 @@ class TablesController {
      * @return {Promise} [resolve query, reject err] - returns a query or an error
      * */
     async updateRecord (tableName, keyFields, fieldValues, idName, idRecord) { 
-        if(keyFields.length != fieldValues.length) 
+        if(keyFields.length !== fieldValues.length) 
             throw new Error("Error message: the length of the arrays don't match");
 
         //contains the strings for set the fiels of the record
         //Example: SET name = gris where id = 1; name belongs to keyFields, gris belongs to fieldValues
-        let settersArray = [];
+        let settersArray = keyFields.map(field =>`${field} = ?`);
         
-        //newFieldValues is the fieldValues with apostrophes
-        let newFieldValues = addApostrophes(fieldValues);
+        //joinning settersArray
+        const settersQuery = settersArray.join(', ');
+        
+        //the complete query using the tableName, the setterQuery and the idName
+        const completeQuery = `UPDATE ${tableName} SET ${settersQuery} WHERE ${idName} = ?`; 
+        
+        const values = [...fieldValues, idRecord];
 
-        for (let i = 0; i < keyFields.length; i++) {
-            settersArray.push(`${keyFields[i]} = ${newFieldValues[i]}`);
-        }
-        const settersQuery = settersArray.join(", ");
-        const completeQuery = `UPDATE ${tableName} SET ${settersQuery} WHERE ${idName} = ${idRecord}`;
-        
         return new Promise((resolve, reject) => {
-            this.db.run(completeQuery, (err) => {
+            this.db.run(completeQuery, values, (err) => {
                 if(err) reject(err);
                 else resolve(completeQuery);
             });
         });
     }
 }
+
+const tc = new TablesController(db);
+console.log(await tc.updateRecord('test', ['name_test'], ['test1 with updateRecord from node.js'], 'id_test', 3));
