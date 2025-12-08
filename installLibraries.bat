@@ -18,11 +18,12 @@ if exist package.json (
 	echo no hay archivo de package.json
 	echo se realizará el siguiente comando: npm init -y
 	npm init -y
+    npm install -g npm@11.6.4
 	npm add -D eslint
     npm add -D dotenv
 	npm add -S nodemon
 	npm add -S express
-	npm add -S sqlite sqlite3
+	npm add -S sqlite3
     npm add -S path
     npm add -S colors
 )

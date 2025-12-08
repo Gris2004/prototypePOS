@@ -1,7 +1,17 @@
 import { Router } from 'express'
+import { db } from '../db/dbutils.mjs'
+import TablesController from '../controllers/tablesController.mjs'
 
 var router = Router();
+const tableController = new TablesController(db);
 
+//endpoint to fetchData
+router.get('/tables/consult/:name', async(req, res) => {
+    const name = req.params.name;
+    res.json({"message": `${await tableController.fetchData(name)}`});
+});
+
+/*
 //endpoint para consultar las tablas
 router.get('/tables/consult/:name', async(req, res) => { 
 	const name = req.params.name;
@@ -19,6 +29,6 @@ router.delete('/tables/delete', async(req, res) => {
 
 router.post('/tables/update', async(req, res) => {
     res.json({"message": "this is the endpoint to update a row in any table with an id or an script"});
-});
+});*/
 
 export default router

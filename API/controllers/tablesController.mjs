@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 /**
  * this class contains the functions to manage the database easier than use the sqlite3 functions 
  * */
-class TablesController { 
+export default class TablesController { 
     /**
      * @constructor
      * @param {sqlite3.Database} db - takes a const which store a sqlite3.Database object*/
