@@ -167,4 +167,4 @@ export default class TablesController {
 }
 
 const tc = new TablesController(db);
-console.log(await tc.updateRecord('test', ['name_test'], ['test1 with updateRecord from node.js'], 'id_test', 3));
+console.log(await tc.fetchData("test"));

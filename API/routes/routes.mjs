@@ -8,7 +8,7 @@ const tableController = new TablesController(db);
 //endpoint to fetchData
 router.get('/tables/consult/:name', async(req, res) => {
     const name = req.params.name;
-    res.json({"message": `${await tableController.fetchData(name)}`});
+    res.json({"message": await tableController.fetchData(name)});
 });
 
 /*
