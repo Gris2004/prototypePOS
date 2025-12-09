@@ -11,6 +11,12 @@ router.get('/tables/consult/:name', async(req, res) => {
     res.json({"message": await tableController.fetchData(name)});
 });
 
+//endpoint to describeTable
+router.get('/tables/describe/:name', async(req, res) => {
+    const name = req.params.name;
+    res.json({"message": await tableController.describeTable(name)});
+});
+
 /*
 //endpoint para consultar las tablas
 router.get('/tables/consult/:name', async(req, res) => { 
