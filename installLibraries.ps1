@@ -1,20 +1,24 @@
-@echo off
-REM configuración de entorno de python
-echo configurando entorno de python
+# configuración de entorno de python
+echo "Configurando entorno de Python"
 
-if not exist env (
-	python.exe -m venv env
-)
+if( -not "./env") {
+    python -m venv env        
+}
+
+#if not exist env (
+#	python.exe -m venv env
+#)
 
 env\Scripts\python.exe -m pip install --upgrade pip
 env\Scripts\python.exe -m pip install -r requirements.txt
-echo.
 
-REM configuración de librerías de node.js
-echo instalando dependencias de node.js
-if exist package.json (
+#configuración de librerías de node.js
+$file = "./package.json"
+echo "instalando dependencias de node.js"
+
+if (Test-Path $file) {
 	npm install
-) else (
+} else {
 	echo no hay archivo de package.json
 	echo se realizará el siguiente comando: npm init -y
 	npm init -y
@@ -26,7 +30,5 @@ if exist package.json (
 	npm add -S sqlite3
     npm add -S path
     npm add -S colors
-)
-echo.
+}
 echo Listo
-pause
