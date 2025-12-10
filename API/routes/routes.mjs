@@ -13,8 +13,19 @@ router.get('/tables/consult/:name', async(req, res) => {
 
 //endpoint to describeTable
 router.get('/tables/describe/:name', async(req, res) => {
+    //the table's Name
     const name = req.params.name;
+    
+    //executing the function and whoing the output
     res.json({"message": await tableController.describeTable(name)});
+});
+
+//endpoint to createTable
+routes.post('/tables/create/name/values', async(req, res) => {
+    const name = req.query.name;
+    const values = req.query.values;
+
+    res.json({"message": await tablesController.createTable(name, values)});
 });
 
 /*
