@@ -21,7 +21,7 @@ router.get('/tables/describe/:name', async(req, res) => {
 });
 
 //endpoint to createTable
-routes.post('/tables/create/name/values', async(req, res) => {
+router.post('/tables/create/name/values', async(req, res) => {
     const name = req.query.name;
     const values = req.query.values;
 
