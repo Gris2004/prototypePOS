@@ -6,15 +6,15 @@ var router = Router();
 const tableController = new TablesController(db);
 
 //endpoint to fetchData
-router.get('/tables/consult/:name', async(req, res) => {
-    const name = req.params.name;
+router.get('/tables/consult', async(req, res) => {
+    const { name } = req.query;
     res.json({"message": await tableController.fetchData(name)});
 });
 
 //endpoint to describeTable
-router.get('/tables/describe/:name', async(req, res) => {
+router.get('/tables/describe', async(req, res) => {
     //the table's Name
-    const name = req.params.name;
+    const { name } = req.query;
     
     //executing the function and whoing the output
     res.json({"message": await tableController.describeTable(name)});
