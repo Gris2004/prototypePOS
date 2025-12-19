@@ -165,6 +165,3 @@ export default class TablesController {
         });
     }
 }
-
-const tc = new TablesController(db);
-console.log(await tc.fetchData("test"));

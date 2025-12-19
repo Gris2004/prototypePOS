@@ -20,7 +20,7 @@ router.get('/tables/describe', async(req, res) => {
 });
 
 //endpoint to createTable
-router.post('/tables/create', async(req, res) => {
+router.post('/tables/insert', async(req, res) => {
     const {name, array} = req.body
     res.json({"message": await tableController.insertRecord(name, array)});
 });
