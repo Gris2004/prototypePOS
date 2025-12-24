@@ -38,4 +38,11 @@ router.delete('/records/delete', async(req, res) => {
     });
 });
 
+router.post('/records/update', async(req, res) => {
+    const { tableName, keyFields, fieldValues, idName, idRecord } = req.body;
+    res.json({
+        "message": await tableController.updateRecord(tableName, keyFields, fieldValues, idName, idRecord)
+    });
+});
+
 export default router
