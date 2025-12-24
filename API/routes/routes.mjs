@@ -30,4 +30,12 @@ router.post('/records/insert', async(req, res) => {
         "message": await tableController.insertRecord(name, array)
     });
 });
+
+router.delete('/records/delete', async(req, res) => {
+    const { tableName, fieldName, judgement } = req.body;
+    res.json({
+        "message": await tableController.deleteRecord(tableName, fieldName, judgement)
+    });
+});
+
 export default router
