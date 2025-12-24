@@ -24,4 +24,10 @@ router.post('/tables/create', async(req, res) => {
     res.json({"message": await tableController.createTable(name, array)});
 });
 
+router.post('/records/insert', async(req, res) => {
+    const { name, array } = req.body;
+    res.json({
+        "message": await tableController.insertRecord(name, array)
+    });
+});
 export default router
