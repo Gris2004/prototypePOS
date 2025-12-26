@@ -53,10 +53,8 @@ class HomeFrame:
         salesButton = tk.Button(self.frame, text="Punto de Venta", command= lambda: self.callNewFrame("sales"))
         salesButton.grid(row=3, column=1)
 
-        self.frame.mainloop()
-
-
 if __name__ == "__main__":
+    genericFrame = tk.Tk()
     home = HomeFrame(None, "500x500", "Ventana Principal")
     home.showHomeFrame()
-
+    home.frame.mainloop()
