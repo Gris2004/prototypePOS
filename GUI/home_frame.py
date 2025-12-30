@@ -15,32 +15,33 @@ class HomeFrame:
         callNewFrame: llama a un frame existente por su nombre
         showHomeFrame: muestra el frame principal con la configuración y disposición iniciales"""
     
-    def __init__(self,frame, geometry, title):
+    def __init__(self, frame, geometry, title):
         """__init__ es el constructor de la clase HomeFrame"""
         self.frame = frame
         self.geometry = geometry
         self.title = title
-        self.frame = None
 
-    def callNewFrame(self, name):
-        self.frame.destroy()
+    def callNewFrame(self, name): 
+        genericFrame = tk.Tk()
         """Llama a un frame existente por su nombre"""
         #DEUDA TÉCNICA: Buscar una mejor forma de hacer esta función
-        if(name == "tikets"):
-            tiketsFrame = TiketsFrame(None, "500x500", "Historial de Tikets")
+        if(name == "tikets"): 
+            tiketsFrame = TiketsFrame(genericFrame, "500x500", "Historial de Tikets")
             tiketsFrame.showTiketsFrame()
+            self.frame.destroy()
         elif(name == "inventory"):
-            inventoryFrame = InventoryFrame(None, "500x500", "Inventario")
+            inventoryFrame = InventoryFrame(genericFrame, "500x500", "Inventario")
             inventoryFrame.showInventoryFrame()
+            self.frame.destroy()
         elif(name == "sales"):
             salesPointFrame = SalesPointFrame(None, "500x500", "Punto de Venta")
             salesPointFrame.showSalesPointFrame()
+            self.frame.destroy()
         else:
             print(f"No existe un frame con el nombre '{name}'")
 
     def showHomeFrame(self):
         """show_home_frame es la función que muestra el frame con su disposición y configuración inicial"""
-        self.frame = tk.Tk()
         self.frame.geometry(self.geometry)
         self.frame.title(self.title)
 
@@ -55,6 +56,6 @@ class HomeFrame:
 
 if __name__ == "__main__":
     genericFrame = tk.Tk()
-    home = HomeFrame(None, "500x500", "Ventana Principal")
+    home = HomeFrame(genericFrame, "500x500", "Ventana Principal")
     home.showHomeFrame()
     home.frame.mainloop()

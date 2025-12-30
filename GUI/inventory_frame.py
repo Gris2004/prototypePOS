@@ -22,9 +22,7 @@ class InventoryFrame:
         """es la función que muestra el frame con su disposición y configuración iniciales"""
         self.frame.geometry(self.geometry)
         self.frame.title(self.title)
-        self.frame.protocol("WM_DELETE_WINDOW", inventory.destructionDetect)
-
-        self.frame.mainloop()
+        self.frame.protocol("WM_DELETE_WINDOW", self.destructionDetect)
 
     def destructionDetect(self):
         "it detects when the user closes the window and open the welcome window"
@@ -40,5 +38,6 @@ class InventoryFrame:
 if __name__ == "__main__":
     genericFrame = tk.Tk()
     inventory = InventoryFrame(genericFrame, "500x500", "Ventana de Inventario")
-    inventory.showInventoryFrame() 
+    inventory.showInventoryFrame()
+    inventory.frame.mainloop()
     
