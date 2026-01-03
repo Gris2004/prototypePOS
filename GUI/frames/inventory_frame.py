@@ -38,6 +38,6 @@ class InventoryFrame:
 if __name__ == "__main__":
     genericFrame = tk.Tk()
     inventory = InventoryFrame(genericFrame, "500x500", "Ventana de Inventario")
-    inventory.showInventoryFrame()
+    inventory.setupInventoryFrame()
     inventory.frame.mainloop()
   

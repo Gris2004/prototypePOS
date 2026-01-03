@@ -17,11 +17,13 @@ class SalesPointFrame:
         self.geometry = geometry
         self.title = title
 
-    def showSalesPointFrame(self):
-        """muestra el frame de SalesPointFrame con su configuración y disposición inicial"""
-        self.frame = tk.Tk()
+    def setupSalesPointFrame(self):
+        """muestra el frame de SalesPointFrame con su configuración y disposición inicial""" 
         self.frame.geometry(self.geometry)
         self.frame.title(self.title)
 
-        self.frame.mainloop()
-
+if __name__ == "__main__":
+    genericFrame = tk.Tk()
+    spFrame = SalesPointFrame(genericFrame, "500x500", "Punto de Venta")
+    spFrame.setupSalesPointFrame()
+    spFrame.frame.mainloop()

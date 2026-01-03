@@ -19,9 +19,13 @@ class TiketsFrame:
         self.title = title
     
     #función para crear motrar la ventana
-    def showTiketsFrame(self):
+    def setupTiketsFrame(self):
         """showTiketsFrame es la función que muestra el frame con la configuración y disposición iniciales"""
-        self.frame = tk.Tk()
         self.frame.geometry(self.geometry)
         self.frame.title(self.title)
-        self.frame.mainloop()
+
+if __name__ == "__main__":
+    genericFrame = tk.Tk()
+    tikets = TiketsFrame(genericFrame, "500x500", "Historial de Tikets")
+    tikets.setupTiketsFrame()
+    tikets.frame.mainloop()

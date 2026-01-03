@@ -17,10 +17,13 @@ class DBControlFrame:
         self.geometry = geometry
         self.title = title
 
-    def showDBControlFrame(self):
-        """showDBControlFrame es la función que muestra el frame con su configuración y disposición inicial"""
-        self.frame = tk.Tk()
+    def setupDBControlFrame(self):
+        """showDBControlFrame es la función que muestra el frame con su configuración y disposición inicial""" 
         self.frame.geometry(self.geometry)
         self.frame.title(self.title)
 
-        self.frame.mainloop
+if __name__ == "__main__":
+    genericFrame = tk.Tk()
+    dbcFrame = DBControlFrame(genericFrame, "500x500", "Control de Base de Datos")
+    dbcFrame.setupDBControlFrame()
+    dbcFrame.frame.mainloop()
