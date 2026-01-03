@@ -18,7 +18,7 @@ class InventoryFrame:
         self.geometry = geometry
         self.title = title
 
-    def showInventoryFrame(self):
+    def setupInventoryFrame(self):
         """es la función que muestra el frame con su disposición y configuración iniciales"""
         self.frame.geometry(self.geometry)
         self.frame.title(self.title)
@@ -40,4 +40,4 @@ if __name__ == "__main__":
     inventory = InventoryFrame(genericFrame, "500x500", "Ventana de Inventario")
     inventory.showInventoryFrame()
     inventory.frame.mainloop()
-    
+  
