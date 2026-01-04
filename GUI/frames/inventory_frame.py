@@ -1,5 +1,7 @@
 import tkinter as tk
-from tkinter import messagebox
+import sys
+sys.path.append('../')
+from window_controller import WindowController
 
 class InventoryFrame:
     """InventoryFrame es una clase que representa la ventana de inventario
@@ -22,19 +24,9 @@ class InventoryFrame:
         """es la función que muestra el frame con su disposición y configuración iniciales"""
         self.frame.geometry(self.geometry)
         self.frame.title(self.title)
-        self.frame.protocol("WM_DELETE_WINDOW", self.destructionDetect)
-
-    def destructionDetect(self):
-        "it detects when the user closes the window and open the welcome window"
-        close = messagebox.askyesno(
-                message = "¿estás seguro de que quieres cerrar la aplicación?", 
-                title = "Confirmación de Cierre",
-                icon = "info"
-                )
-        if close:
-            #checking the window closure
-            self.frame.destroy()
-
+        windowController = WindowController()
+        self.frame.protocol("WM_DELETE_WINDOW", lambda: windowController.destructionDetect(self.frame))
+    
 if __name__ == "__main__":
     genericFrame = tk.Tk()
     inventory = InventoryFrame(genericFrame, "500x500", "Ventana de Inventario")
