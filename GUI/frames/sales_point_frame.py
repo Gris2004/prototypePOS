@@ -1,4 +1,7 @@
 import tkinter as tk
+import sys
+sys.path.append('../')
+from window_controller import WindowController
 
 class SalesPointFrame:
     """SalesPointFrame representa a la ventana de punto de venta
@@ -21,6 +24,10 @@ class SalesPointFrame:
         """muestra el frame de SalesPointFrame con su configuración y disposición inicial""" 
         self.frame.geometry(self.geometry)
         self.frame.title(self.title)
+
+        #the protocol when the user closes the window
+        windowController = WindowController()
+        self.frame.protocol("WM_DELETE_WINDOW", lambda: windowController.destructionDetect(self.frame))
 
 if __name__ == "__main__":
     genericFrame = tk.Tk()

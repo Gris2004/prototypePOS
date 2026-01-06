@@ -1,4 +1,7 @@
 import tkinter as tk
+import sys
+sys.path.append('../')
+from window_controller import WindowController
 
 #clase de TiketsFrame
 class TiketsFrame:
@@ -23,6 +26,10 @@ class TiketsFrame:
         """showTiketsFrame es la función que muestra el frame con la configuración y disposición iniciales"""
         self.frame.geometry(self.geometry)
         self.frame.title(self.title)
+
+        #the protocol when the user closes the window
+        windowController = WindowController()
+        self.frame.protocol("WM_DELETE_WINDOW", lambda: windowController.destructionDetect(self.frame))
 
 if __name__ == "__main__":
     genericFrame = tk.Tk()

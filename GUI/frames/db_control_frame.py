@@ -1,4 +1,7 @@
 import tkinter as tk
+import sys
+sys.path.append('../')
+from window_controller import WindowController
 
 class DBControlFrame:
     """DBControlFrame representa a la ventana de control de base de datos o inventario
@@ -21,6 +24,9 @@ class DBControlFrame:
         """showDBControlFrame es la función que muestra el frame con su configuración y disposición inicial""" 
         self.frame.geometry(self.geometry)
         self.frame.title(self.title)
+
+        windowController = WindowController()
+        self.frame.protocol("WM_DELETE_WINDOW", lambda: windowController.destructionDetect(self.frame))
 
 if __name__ == "__main__":
     genericFrame = tk.Tk()
