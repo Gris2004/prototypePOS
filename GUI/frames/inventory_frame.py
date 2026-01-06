@@ -1,7 +1,7 @@
 import tkinter as tk
 import sys
-sys.path.append('../')
-from window_controller import WindowController
+sys.path.append('../utils/')
+from windows_controller import WindowsController
 
 class InventoryFrame:
     """InventoryFrame es una clase que representa la ventana de inventario
@@ -24,9 +24,11 @@ class InventoryFrame:
         """es la función que muestra el frame con su disposición y configuración iniciales"""
         self.frame.geometry(self.geometry)
         self.frame.title(self.title)
-        windowController = WindowController()
-        self.frame.protocol("WM_DELETE_WINDOW", lambda: windowController.destructionDetect(self.frame))
-    
+
+        #protocol in case that the user closes the window
+        wController = WindowsController()
+        self.frame.protocol("WM_DELETE_WINDOW", lambda: wController.destructionDetect(self.frame))
+
 if __name__ == "__main__":
     genericFrame = tk.Tk()
     inventory = InventoryFrame(genericFrame, "500x500", "Ventana de Inventario")

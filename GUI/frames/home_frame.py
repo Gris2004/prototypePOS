@@ -1,8 +1,7 @@
 ﻿import tkinter as tk
 import sys
-sys.path.append('../')
-from window_controller import WindowController
-
+sys.path.append('../utils/')
+from windows_controller import WindowsController
 
 class HomeFrame:
     """HomeFrame es la clase que representa a la ventana principal
@@ -34,11 +33,11 @@ class HomeFrame:
         tiketHistoriesButton.grid(row=2, column=1)
 
         salesButton = tk.Button(self.frame, text="Punto de Venta")
-        salesButton.grid(row=3, column=1)
+        salesButton.grid(row=3, column=1) 
 
-        #protocol when the user closes the window
-        windowController = WindowController()
-        self.frame.protocol("WM_DELETE_WINDOW", lambda: windowController.destructionDetect(self.frame))
+        #protocol in case that the user closes the window
+        wController = WindowsController()
+        self.frame.protocol('WM_DELETE_WINDOW', lambda: wController.destructionDetect(self.frame))
 
 if __name__ == "__main__":
     genericFrame = tk.Tk()
