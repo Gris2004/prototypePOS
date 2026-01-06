@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 
-class WindowController:
+class WindowsController:
     """WindowController is a class that controls the frames with some functions to be imported to other frames
     and use its functions
     
