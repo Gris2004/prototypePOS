@@ -20,7 +20,7 @@ class InventoryFrame:
         self.geometry = geometry
         self.title = title
 
-    def setupInventoryFrame(self):
+    def setup(self):
         """es la función que muestra el frame con su disposición y configuración iniciales"""
         self.frame.geometry(self.geometry)
         self.frame.title(self.title)
@@ -32,6 +32,6 @@ class InventoryFrame:
 if __name__ == "__main__":
     genericFrame = tk.Tk()
     inventory = InventoryFrame(genericFrame, "500x500", "Ventana de Inventario")
-    inventory.setupInventoryFrame()
+    inventory.setup()
     inventory.frame.mainloop()
   

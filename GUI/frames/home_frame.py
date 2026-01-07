@@ -21,7 +21,7 @@ class HomeFrame:
         self.geometry = geometry
         self.title = title
 
-    def setupHomeFrame(self):
+    def setup(self):
         """show_home_frame es la función que muestra el frame con su disposición y configuración inicial"""
         self.frame.geometry(self.geometry)
         self.frame.title(self.title)
@@ -42,5 +42,5 @@ class HomeFrame:
 if __name__ == "__main__":
     genericFrame = tk.Tk()
     home = HomeFrame(genericFrame, "500x500", "ventana principal")
-    home.setupHomeFrame()
+    home.setup()
     home.frame.mainloop()
