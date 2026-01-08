@@ -5,10 +5,6 @@ if( -not "./env") {
     python -m venv env        
 }
 
-#if not exist env (
-#	python.exe -m venv env
-#)
-
 env\Scripts\python.exe -m pip install --upgrade pip
 env\Scripts\python.exe -m pip install -r requirements.txt
 
