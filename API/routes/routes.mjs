@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { db } from '../db/dbutils.mjs'
+import { db } from '../db/dbUtils.mjs'
 import TablesController from '../controllers/tablesController.mjs'
 
 var router = Router();
