@@ -1,7 +1,5 @@
 import tkinter as tk
-import sys
-sys.path.append('../utils/')
-from windows_controller import WindowsController
+from GUI.utils.windows_controller import WindowsController
 
 class DBControlFrame:
     """DBControlFrame representa a la ventana de control de base de datos o inventario

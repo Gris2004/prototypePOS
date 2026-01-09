@@ -1,7 +1,6 @@
 import tkinter as tk
 import sys
-sys.path.append('../utils/')
-from windows_controller import WindowsController
+from GUI.utils.windows_controller import WindowsController
 
 class InventoryFrame:
     """InventoryFrame es una clase que representa la ventana de inventario

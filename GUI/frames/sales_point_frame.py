@@ -1,7 +1,5 @@
 import tkinter as tk
-import sys
-sys.path.append('../utils/')
-from windows_controller import WindowsController
+from utils.windows_controller import WindowsController
 
 class SalesPointFrame:
     """SalesPointFrame representa a la ventana de punto de venta
