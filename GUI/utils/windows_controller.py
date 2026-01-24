@@ -9,7 +9,7 @@ class WindowsController:
         openWindow: opens a new window when this function is called
         destructionDetect: detects when the user closes a window and sends a message or returns to home_frame"""
 
-    def openWindow(self, window):
+    def openWindow(self, window): #firs frame, after geometry and last title
         window.setup()
         window.frame.mainloop()
 
