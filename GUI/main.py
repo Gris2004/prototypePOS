@@ -1,7 +1,7 @@
 import tkinter as tk
 #TODO: simplify the importing of libraries
-from GUI.utils.windows_controller import *
-from GUI.frames.home_frame import *;
+from GUI.utils. import *
+from GUI.frames. import *
 
 #objects
 wController = WindowsController()
